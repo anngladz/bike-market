@@ -13,17 +13,21 @@ function Navbar() {
 
   return (
     <nav className='bg-gray-800 text-slate-100'>
-      <div className='max-w-7xl h-20 mx-auto flex justify-center md:justify-start'>
-        <BikeIcon
-          fill='#fff'
-          width='50px'
-          height='50px'
-          className='my-auto mr-8'
-        />
-
+      <div className='w-2/3 h-20 mx-auto flex justify-center md:justify-start'>
+        <button className='flex' onClick={() => navigate('/')}>
+          <BikeIcon
+            fill='#fff'
+            width='50px'
+            height='50px'
+            className='my-auto mr-8'
+          />
+          <h1 className='my-auto mr-8 uppercase font-medium text-xl hidden md:block'>
+            <span className='text-amber-300 font-bold'>Bike</span> Market
+          </h1>
+        </button>
         <button
           className={`${
-            pathMatchRoute('/') ? 'bg-gray-900' : ''
+            pathMatchRoute('/') ? 'bg-gray-700 text-amber-300' : ''
           } flex my-auto mx-2 p-3 rounded-md font-bold  hover:text-amber-300`}
           onClick={() => navigate('/')}
         >
@@ -31,7 +35,12 @@ function Navbar() {
         </button>
         <button
           className={`${
-            pathMatchRoute('/profile') ? 'bg-gray-900' : ''
+            pathMatchRoute('/profile') ||
+            pathMatchRoute('/sign-in') ||
+            pathMatchRoute('/sign-up') ||
+            pathMatchRoute('/forgot-password')
+              ? 'bg-gray-700 text-amber-300'
+              : ''
           } flex my-auto mx-2 p-3 rounded-md font-bold  hover:text-amber-300`}
           onClick={() => navigate('/profile')}
         >
