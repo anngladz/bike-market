@@ -13,7 +13,7 @@ function Navbar() {
 
   return (
     <nav className='bg-gray-800 text-slate-100'>
-      <div className='w-2/3 h-20 mx-auto flex justify-center md:justify-start'>
+      <div className='w-11/12 lg:w-2/3 h-20 mx-auto flex justify-center md:justify-start'>
         <button className='flex' onClick={() => navigate('/')}>
           <BikeIcon
             fill='#fff'
