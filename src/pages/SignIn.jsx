@@ -48,7 +48,7 @@ function SignIn() {
       <header>
         <h1 className='text-xl font-bold mb-4'>Sign In</h1>
       </header>
-      <main className='flex flex-col w-11/12 md:w-96'>
+      <main className='flex flex-col w-11/12 md:w-96 items-center'>
         <form className='flex flex-col w-11/12 md:w-96' onSubmit={onSubmit}>
           <input
             className='p-3 rounded-md mt-4 focus:outline-gray-300'

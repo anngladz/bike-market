@@ -3,7 +3,7 @@ import { ReactComponent as DeleteIcon } from '../assets/delete.svg';
 
 function MessageItem({ message, onDelete }) {
   return (
-    <div className='relative bg-gray-50 rounded-md p-3 mb-4'>
+    <div className='relative bg-gray-50 rounded-md p-3 mb-4 overflow-auto'>
       <p>
         <span className='font-medium'>Author</span>: {message.author}
       </p>

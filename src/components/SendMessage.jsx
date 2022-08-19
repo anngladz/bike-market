@@ -19,18 +19,22 @@ function SendMessage({ listing }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(text.length);
+    if (text.length <= 30 || text.length >= 255) {
+      toast.error('Message length: min 20, max 255');
+    } else {
+      const formDataCopy = {
+        ...formData,
+        timestamp: serverTimestamp(),
+      };
 
-    const formDataCopy = {
-      ...formData,
-      timestamp: serverTimestamp(),
-    };
-
-    await addDoc(collection(db, 'messages'), formDataCopy);
-    toast.success('Message send!');
-    setFormData((prevState) => ({
-      ...prevState,
-      text: '',
-    }));
+      await addDoc(collection(db, 'messages'), formDataCopy);
+      toast.success('Message send!');
+      setFormData((prevState) => ({
+        ...prevState,
+        text: '',
+      }));
+    }
   };
 
   const onChange = (e) => {
@@ -45,13 +49,13 @@ function SendMessage({ listing }) {
       <p className='font-medium'>Send message:</p>
       <form className='mt-2' onSubmit={onSubmit}>
         <textarea
+          autoFocus
           rows='6'
           id='text'
           onChange={onChange}
           value={text}
           className='bg-gray-50 w-full rounded-md p-3 focus:outline-gray-300'
           required
-          maxLength='255'
         ></textarea>
         <button
           className='my-2 w-full font-bold rounded-md bg-amber-300 p-3'

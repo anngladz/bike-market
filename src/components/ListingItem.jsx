@@ -7,7 +7,7 @@ function ListingItem({ listing, id, onDelete, onEdit }) {
   return (
     <div className='relative'>
       <Link to={`/${listing.type}/${id}`}>
-        <div className='grid grid-cols-2 mb-4 bg-gray-50 rounded-md py-2 hover:bg-gray-200'>
+        <div className='grid grid-cols-2 mb-4 bg-gray-50 rounded-md py-2 hover:bg-gray-200 overflow-auto'>
           <div>
             <img
               className='h-24 md:h-36 mx-auto rounded-md'

@@ -206,20 +206,20 @@ function EditListing() {
       </header>
       <main>
         <form className='flex flex-col' onSubmit={onSubmit}>
-          <div className='grid grid-cols-[100px_1fr] items-center'>
+          <div className='grid grid-cols-1 gap-2 md:grid-cols-[100px_1fr] items-center'>
             <label className='font-medium mr-4'>Title</label>
             <input
-              className='w-2/3 rounded-md px-3 py-1 focus:outline-gray-300'
+              className='w-full rounded-md px-3 py-1 focus:outline-gray-300'
               type='text'
               id='title'
               value={title}
               onChange={onMutate}
-              maxLength='48'
               minLength='10'
+              maxLength='48'
               required
             />
           </div>
-          <div className='mt-4 grid grid-cols-[100px_1fr] items-center'>
+          <div className='mt-4 grid grid-cols-1 gap-2 md:grid-cols-[100px_1fr] items-center'>
             <label className='font-medium mr-4'>Type</label>
             <div>
               <button
@@ -246,7 +246,7 @@ function EditListing() {
               </button>
             </div>
           </div>
-          <div className='mt-4 grid grid-cols-[100px_1fr] items-center'>
+          <div className='mt-4 grid grid-cols-1 gap-2 md:grid-cols-[100px_1fr] items-center'>
             <label className='font-medium mr-4'>Condition</label>
             <div>
               <button
@@ -273,36 +273,36 @@ function EditListing() {
               </button>
             </div>
           </div>
-          <div className='mt-4 grid grid-cols-[100px_1fr] items-center'>
+          <div className='mt-4 grid grid-cols-1 gap-2 md:grid-cols-[100px_1fr] items-center'>
             <label className='font-medium mr-4'>Description</label>
-            <textarea
-              className='w-2/3 rounded-md px-3 py-1 focus:outline-gray-300'
+            <input
+              className='w-full rounded-md px-3 py-1 focus:outline-gray-300'
               type='text'
               id='description'
               value={description}
               onChange={onMutate}
-              maxLength='255'
               minLength='48'
+              maxLength='255'
               required
             />
           </div>
-          <div className='mt-4 grid grid-cols-[100px_1fr] items-center'>
+          <div className='mt-4 grid grid-cols-1 gap-2 md:grid-cols-[100px_1fr] items-center'>
             <label className='font-medium mr-4'>Location</label>
             <input
-              className='w-2/3 rounded-md px-3 py-1 focus:outline-gray-300'
+              className='w-full rounded-md px-3 py-1 focus:outline-gray-300'
               type='text'
               id='location'
               value={location}
               onChange={onMutate}
-              maxLength='24'
               minLength='3'
+              maxLength='24'
               required
             />
           </div>
-          <div className='mt-4 grid grid-cols-[100px_1fr] items-center'>
+          <div className='mt-4 grid grid-cols-1 gap-2 md:grid-cols-[100px_1fr] items-center'>
             <label className='font-medium mr-4'>Price</label>
             <input
-              className='w-2/3 rounded-md px-3 py-1 focus:outline-gray-300'
+              className='w-full rounded-md px-3 py-1 focus:outline-gray-300'
               type='number'
               id='price'
               value={price}
@@ -311,10 +311,10 @@ function EditListing() {
               required
             />
           </div>
-          <div className='mt-4 grid grid-cols-[100px_1fr] items-center'>
+          <div className='mt-4 grid grid-cols-1 gap-2 md:grid-cols-[100px_1fr] items-center'>
             <label className='font-medium mr-4'>Email</label>
             <input
-              className='w-2/3 rounded-md px-3 py-1 focus:outline-gray-300'
+              className='w-full rounded-md px-3 py-1 focus:outline-gray-300'
               type='email'
               id='email'
               value={email}
@@ -322,17 +322,17 @@ function EditListing() {
               required
             />
           </div>
-          <div className='mt-4 grid grid-cols-[100px_1fr] items-center'>
+          <div className='mt-4 grid grid-cols-1 gap-2 md:grid-cols-[100px_1fr] items-center'>
             <label className='font-medium mr-4'>Phone</label>
             <input
-              className='w-2/3 rounded-md px-3 py-1 focus:outline-gray-300'
+              className='w-full rounded-md px-3 py-1 focus:outline-gray-300'
               type='phone'
               id='phone'
               value={phone}
               onChange={onMutate}
             />
           </div>
-          <div className='mt-4 grid grid-cols-[100px_1fr] items-center'>
+          <div className='mt-4 grid grid-cols-1 gap-2 md:grid-cols-[100px_1fr] items-center'>
             <label className='font-medium mr-4'>Images</label>
             <div>
               <input
@@ -350,9 +350,9 @@ function EditListing() {
 
           <button
             type='submit'
-            className='mt-4 rounded-md p-3 font-bold bg-amber-300'
+            className='my-4 rounded-md p-3 font-bold bg-amber-300'
           >
-            Create Listing
+            Update Listing
           </button>
         </form>
       </main>

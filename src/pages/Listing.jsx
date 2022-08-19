@@ -53,7 +53,7 @@ function Listing() {
           }}
         />
       </div>
-      <div className='bg-gray-50 rounded-md mt-4 px-10 py-5'>
+      <div className='bg-gray-50 rounded-md mt-4 p-5 overflow-auto'>
         <p className='font-bold text-center'>{listing.title}</p>
         <p className='my-8'>{listing.description}</p>
         <div className='grid grid-cols-2'>
@@ -86,6 +86,7 @@ function Listing() {
               <button
                 onClick={() => {
                   setMsg((prevState) => !prevState);
+                  // document.querySelector('#text').focus();
                 }}
                 className='py-1 px-3 font-bold mt-4 bg-amber-300 rounded-md'
               >
