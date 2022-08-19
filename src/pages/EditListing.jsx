@@ -6,15 +6,18 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase.config';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../components/Spinner';
 
-function CreateListing() {
+function EditListing() {
+  // eslint-disable-next-line
+  const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [listing, setListing] = useState(false);
   const [formData, setFormData] = useState({
     type: 'bike',
     title: '',
@@ -41,8 +44,37 @@ function CreateListing() {
 
   const auth = getAuth();
   const navigate = useNavigate();
+  const params = useParams();
   const isMounted = useRef(true);
 
+  // Redirect if listing is not user's
+  useEffect(() => {
+    if (listing && listing.userRef !== auth.currentUser.uid) {
+      toast.error('You can not edit that listing!');
+      navigate('/');
+    }
+  });
+
+  // Fetch listing to edit
+  useEffect(() => {
+    setLoading(true);
+    const fetchListing = async () => {
+      const docRef = doc(db, 'listings', params.listingId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setListing(docSnap.data());
+        setFormData({ ...docSnap.data() });
+        setLoading(false);
+      } else {
+        navigate('/');
+        toast.error('Listing does not exist');
+      }
+    };
+
+    fetchListing();
+  }, [params.listingId, navigate]);
+
+  // Sets userRef to logged in user
   useEffect(() => {
     if (isMounted) {
       onAuthStateChanged(auth, (user) => {
@@ -128,9 +160,11 @@ function CreateListing() {
 
     delete formDataCopy.images;
 
-    const docRef = await addDoc(collection(db, 'listings'), formDataCopy);
+    // Update listing
+    const docRef = doc(db, 'listings', params.listingId);
+    await updateDoc(docRef, formDataCopy);
     setLoading(false);
-    toast.success('Listing added!');
+    toast.success('Listing updated!');
     navigate(`/${formDataCopy.type}/${docRef.id}`);
   };
 
@@ -168,7 +202,7 @@ function CreateListing() {
   return (
     <div className='w-11/12 md:w-2/3 mx-auto mt-8 text-gray-800'>
       <header>
-        <h1 className='leading-10 text-xl font-bold mb-8'>Create listing</h1>
+        <h1 className='leading-10 text-xl font-bold mb-8'>Edit listing</h1>
       </header>
       <main>
         <form className='flex flex-col' onSubmit={onSubmit}>
@@ -326,4 +360,4 @@ function CreateListing() {
   );
 }
 
-export default CreateListing;
+export default EditListing;

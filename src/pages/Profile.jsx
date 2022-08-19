@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { updateDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase.config';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import ProfileNav from '../components/ProfileNav';
 import edit from '../assets/edit.svg';
 import done from '../assets/done.svg';
 
@@ -18,13 +17,6 @@ function Profile() {
   });
 
   const { name, email } = formData;
-
-  const navigate = useNavigate();
-
-  const onLogout = () => {
-    auth.signOut();
-    navigate('/');
-  };
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -50,15 +42,7 @@ function Profile() {
 
   return (
     <div className='w-11/12 md:w-2/3 mx-auto mt-8 text-gray-800'>
-      <header className='flex'>
-        <h1 className='leading-10 text-xl font-bold mb-8'>My Profile</h1>
-        <button
-          className='h-10 px-2 font-bold rounded-md bg-amber-300 text-center ml-auto'
-          onClick={onLogout}
-        >
-          Logout
-        </button>
-      </header>
+      <ProfileNav />
       <main>
         <form>
           <div className='p-3 rounded-md bg-gray-50 relative'>
@@ -89,13 +73,6 @@ function Profile() {
         <p className='mt-4 p-3 rounded-md bg-gray-50'>
           <span className='font-medium'>E-mail:</span> {email}
         </p>
-
-        <Link
-          to='/create-listing'
-          className='mt-8 p-3 rounded-md bg-amber-300 w-full block text-center font-bold'
-        >
-          Create listing
-        </Link>
       </main>
     </div>
   );

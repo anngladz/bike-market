@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase.config';
+import SendMessage from '../components/SendMessage';
 import Spinner from '../components/Spinner';
 import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
@@ -9,7 +11,9 @@ import 'react-gallery-carousel/dist/index.css';
 function Listing() {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [msg, setMsg] = useState(false);
 
+  const auth = getAuth();
   const navigate = useNavigate();
   const params = useParams();
 
@@ -76,9 +80,23 @@ function Listing() {
               <span className='font-medium'>Phone: </span>
               {listing.phone ? listing.phone : '-'}
             </p>
+            {!auth.currentUser || listing.userRef === auth.currentUser.uid ? (
+              ''
+            ) : (
+              <button
+                onClick={() => {
+                  setMsg((prevState) => !prevState);
+                }}
+                className='py-1 px-3 font-bold mt-4 bg-amber-300 rounded-md'
+              >
+                Contact
+              </button>
+            )}
           </div>
         </div>
       </div>
+
+      {msg ? <SendMessage listing={listing} /> : ''}
     </main>
   );
 }

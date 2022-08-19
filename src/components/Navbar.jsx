@@ -36,6 +36,8 @@ function Navbar() {
         <button
           className={`${
             pathMatchRoute('/profile') ||
+            pathMatchRoute('/profile/listings') ||
+            pathMatchRoute('/profile/messages') ||
             pathMatchRoute('/sign-in') ||
             pathMatchRoute('/sign-up') ||
             pathMatchRoute('/forgot-password')

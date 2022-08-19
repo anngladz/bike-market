@@ -10,7 +10,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { toast } from 'react-toastify';
-import MarketItem from '../components/MarketItem';
+import ListingItem from '../components/ListingItem';
 import Spinner from '../components/Spinner';
 
 function Market() {
@@ -121,7 +121,7 @@ function Market() {
       ) : listings && listings.length > 0 ? (
         <main className='mt-8'>
           {listings.map((listing) => (
-            <MarketItem
+            <ListingItem
               listing={listing.data}
               id={listing.id}
               key={listing.id}
