@@ -6,7 +6,7 @@ Mini market app where you can register with your e-mail or google account, add/e
 
 ## Links
 
-Live version: [Bike Market](https://bike-market-five.vercel.app/)
+Live version: [Bike Market](https://bike-market-five.vercel.app/)  
 Test accounts: johndoe@email.com | janedoe@email.com | password: qwerty123
 
 ---
@@ -14,7 +14,7 @@ Test accounts: johndoe@email.com | janedoe@email.com | password: qwerty123
 ## Build with
 
 :small_blue_diamond: React.js  
-:small_blue_diamond: Tailwind CSS
+:small_blue_diamond: Tailwind CSS  
 :small_blue_diamond: Firebase + Google OAuth
 
 ---
