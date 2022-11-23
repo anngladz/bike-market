@@ -319,7 +319,7 @@ function CreateListing() {
             type='submit'
             className='my-4 rounded-md p-3 font-bold bg-amber-300'
           >
-            Update Listing
+            Create Listing
           </button>
         </form>
       </main>
